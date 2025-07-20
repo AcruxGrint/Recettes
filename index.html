@@ -3,38 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <title>Recettes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       background-color: #1d687a;
       color: white;
       font-family: Arial, sans-serif;
-      padding: 2rem;
+      padding: 1rem;
+      margin: 0;
     }
+
+    h1, h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2rem 0;
+    }
+
+    li {
+      margin-bottom: 1rem;
+    }
+
     a {
       color: white;
       text-decoration: none;
+      display: flex;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 0.7rem;
+      border-radius: 10px;
+      transition: background 0.3s;
     }
+
     a:hover {
-      text-decoration: underline;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    img {
+      height: 60px;
+      width: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 1rem;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 600px) {
+      a {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      img {
+        margin: 0 0 0.5rem 0;
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
     }
   </style>
 </head>
 <body>
   <h1>📚 Recettes</h1>
+
+  <h2>Entrées</h2>
   <ul>
-    <h2 class="titre-blanc">Entrées</h2>
+    <!-- Exemple d'entrée à ajouter ici -->
+  </ul>
 
-    <h2 class="titre-blanc">Plats principaux</h2>
-    
-<li>
-  <a href="recettes/quiche-lorraine.html" style="display: flex; align-items: center;">
-    <img src="images/quiche-lorraine.jpg" alt="Quiche Lorraine" style="height: 60px; margin-right: 10px;">
-    Quiche Lorraine
-  </a>
-</li>
-    
-    <h3 class="titre-blanc">Desserts</h3>
+  <h2>Plats principaux</h2>
+  <ul>
+    <li>
+      <a href="recettes/quiche-lorraine.html">
+        <img src="images/quiche-lorraine.jpg" alt="Quiche Lorraine">
+        <span>Quiche Lorraine</span>
+      </a>
+    </li>
+  </ul>
 
+  <h2>Desserts</h2>
+  <ul>
+    <!-- Exemple de dessert à ajouter ici -->
   </ul>
 </body>
 </html>
