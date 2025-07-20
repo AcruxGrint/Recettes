@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recettes Maison</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #ff7043;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    .search-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .search-bar input, .search-bar select {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
+    ul, ol {
+      margin: 0 0 1rem 1.2rem;
+    }
+    footer {
+      text-align: center;
+      color: #aaa;
+      padding: 1rem;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 Recettes Maison</h1>
+  </header>
+
+  <main>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Rechercher une recette...">
+      <select id="categoryFilter">
+        <option value="">Toutes les catégories</option>
+        <option value="plat">Plat principal</option>
+        <option value="dessert">Dessert</option>
+      </select>
+    </div>
+
+    <div class="card" data-title="quiche lorraine" data-category="plat">
+      <h2>🥧 Quiche Lorraine</h2>
+      <div class="meta">Préparation : 15 min • Cuisson : 35 min • Pour 4 personnes</div>
+
+      <h3>Ingrédients</h3>
+      <ul>
+        <li>1 pâte brisée</li>
+        <li>200g de lardons</li>
+        <li>3 œufs</li>
+        <li>20cl de crème fraîche</li>
+        <li>10cl de lait</li>
+        <li>Sel, poivre, muscade</li>
+      </ul>
+
+      <h3>Instructions</h3>
+      <ol>
+        <li>Préchauffer le four à 180°C.</li>
+        <li>Faire revenir les lardons dans une poêle.</li>
+        <li>Mélanger les œufs, la crème, le lait et les assaisonnements.</li>
+        <li>Étaler la pâte dans un moule, y disposer les lardons, puis verser le mélange.</li>
+        <li>Cuire au four pendant 35 minutes.</li>
+      </ol>
+    </div>
+
+    <div class="card" data-title="cookies chocolat" data-category="dessert">
+      <h2>🍪 Cookies aux pépites de chocolat</h2>
+      <div class="meta">Préparation : 10 min • Cuisson : 12 min • Pour 12 cookies</div>
+
+      <h3>Ingrédients</h3>
+      <ul>
+        <li>120g de beurre mou</li>
+        <li>100g de sucre roux</li>
+        <li>1 œuf</li>
+        <li>180g de farine</li>
+        <li>1/2 sachet de levure chimique</li>
+        <li>100g de pépites de chocolat</li>
+        <li>1 pincée de sel</li>
+      </ul>
+
+      <h3>Instructions</h3>
+      <ol>
+        <li>Préchauffer le four à 180°C.</li>
+        <li>Dans un saladier, mélanger le beurre et le sucre.</li>
+        <li>Ajouter l'œuf, puis incorporer la farine, la levure et le sel.</li>
+        <li>Ajouter les pépites de chocolat.</li>
+        <li>Former des boules de pâte et les disposer sur une plaque recouverte de papier cuisson.</li>
+        <li>Cuire 10 à 12 minutes. Laisser refroidir.</li>
+      </ol>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Recettes Maison – Site HTML statique gratuit
+  </footer>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const categoryFilter = document.getElementById('categoryFilter');
+    const cards = document.querySelectorAll('.card');
+
+    function filterRecipes() {
+      const searchTerm = searchInput.value.toLowerCase();
+      const selectedCategory = categoryFilter.value;
+
+      cards.forEach(card => {
+        const title = card.dataset.title;
+        const category = card.dataset.category;
+
+        const matchesSearch = title.includes(searchTerm);
+        const matchesCategory = !selectedCategory || category === selectedCategory;
+
+        card.style.display = matchesSearch && matchesCategory ? '' : 'none';
+      });
+    }
+
+    searchInput.addEventListener('input', filterRecipes);
+    categoryFilter.addEventListener('change', filterRecipes);
+  </script>
+</body>
+</html>
