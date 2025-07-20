@@ -84,11 +84,13 @@
 
   <h2>Plats principaux</h2>
   <ul>
-    <li>
+    <li data-categorie="plat">
       <a href="recettes/quiche-lorraine.html">
         <img src="images/quiche-lorraine.jpg" alt="Quiche Lorraine">
         <span>Quiche Lorraine</span>
       </a>
+    </li>
+    <li data-categorie="plat">
       <a href="recettes/tiramisu-salé-courgette.html">
         <img src="images/tiramisu-salé-courgette.jpg" alt="Tiramisu salé courgette">
         <span>Tiramisu salé courgette</span>
@@ -100,5 +102,19 @@
   <ul>
     <!-- Exemple de dessert à ajouter ici -->
   </ul>
+  <script>
+  function filtrerRecettes() {
+    const filtre = document.getElementById("filtre").value;
+    const recettes = document.querySelectorAll("li[data-categorie]");
+    recettes.forEach((recette) => {
+      if (filtre === "toutes" || recette.dataset.categorie === filtre) {
+        recette.style.display = "block";
+      } else {
+        recette.style.display = "none";
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
