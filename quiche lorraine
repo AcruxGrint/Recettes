@@ -1,0 +1,23 @@
+    <div class="card" data-title="quiche lorraine" data-category="plat">
+      <h2>🥧 Quiche Lorraine</h2>
+      <div class="meta">Préparation : 15 min • Cuisson : 35 min • Pour 4 personnes</div>
+
+      <h3>Ingrédients</h3>
+      <ul>
+        <li>1 pâte brisée</li>
+        <li>200g de lardons</li>
+        <li>3 œufs</li>
+        <li>20cl de crème fraîche</li>
+        <li>10cl de lait</li>
+        <li>Sel, poivre, muscade</li>
+      </ul>
+
+      <h3>Instructions</h3>
+      <ol>
+        <li>Préchauffer le four à 180°C.</li>
+        <li>Faire revenir les lardons dans une poêle.</li>
+        <li>Mélanger les œufs, la crème, le lait et les assaisonnements.</li>
+        <li>Étaler la pâte dans un moule, y disposer les lardons, puis verser le mélange.</li>
+        <li>Cuire au four pendant 35 minutes.</li>
+      </ol>
+    </div>
