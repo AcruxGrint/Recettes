@@ -69,6 +69,14 @@
 <body>
   <h1>📚 Recettes</h1>
 
+  <label for="filtre">Filtrer par catégorie :</label>
+<select id="filtre" onchange="filtrerRecettes()">
+  <option value="toutes">Toutes</option>
+  <option value="entree">Entrées</option>
+  <option value="plat">Plats principaux</option>
+  <option value="dessert">Desserts</option>
+</select>
+  
   <h2>Entrées</h2>
   <ul>
     <!-- Exemple d'entrée à ajouter ici -->
