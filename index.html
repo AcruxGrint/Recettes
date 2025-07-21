@@ -35,51 +35,50 @@
     }
 
     ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
       list-style: none;
       padding: 0;
       margin-bottom: 2rem;
     }
 
     li {
-      margin-bottom: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    li:hover {
+      transform: translateY(-5px);
     }
 
     .recette {
-      display: flex;
-      align-items: center;
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 0.7rem;
-      border-radius: 10px;
-      text-decoration: none;
+      display: block;
       color: white;
-      transition: background 0.3s;
-    }
-
-    .recette:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+      text-decoration: none;
+      height: 100%;
     }
 
     .recette img {
-      height: 60px;
-      width: 60px;
+      width: 100%;
+      height: auto;
       object-fit: cover;
-      border-radius: 8px;
-      margin-right: 1rem;
-      flex-shrink: 0;
+      display: block;
     }
 
-    @media (max-width: 600px) {
-      .recette {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .recette-content {
+      padding: 0.8rem 1rem;
+    }
 
-      .recette img {
-        margin: 0 0 0.5rem 0;
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-      }
+    .recette-title {
+      font-weight: bold;
+      margin: 0;
+      font-size: 1.1rem;
+      text-align: center;
     }
   </style>
 </head>
@@ -104,18 +103,20 @@
       <li data-categorie="plat" data-nom="quiche lorraine">
         <a href="recettes/quiche-lorraine.html" class="recette">
           <img src="images/quiche-lorraine.jpg" alt="Quiche Lorraine">
-          <span>Quiche Lorraine</span>
+          <div class="recette-content">
+            <p class="recette-title">Quiche Lorraine</p>
+          </div>
         </a>
       </li>
       <li data-categorie="plat" data-nom="tiramisu salé courgette">
         <a href="recettes/tiramisu-salé-courgette.html" class="recette">
           <img src="images/tiramisu-salé-courgette.jpg" alt="Tiramisu salé courgette">
-          <span>Tiramisu salé courgette</span>
+          <div class="recette-content">
+            <p class="recette-title">Tiramisu salé courgette</p>
+          </div>
         </a>
       </li>
     </ul>
-
-    <!-- Tu peux ajouter d'autres sections (entrées, desserts) ici -->
   </section>
 
   <script>
