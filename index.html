@@ -47,8 +47,6 @@
       background-color: rgba(255, 255, 255, 0.1);
       border-radius: 12px;
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
       transition: transform 0.3s ease;
     }
 
@@ -78,7 +76,29 @@
       font-weight: bold;
       margin: 0;
       font-size: 1.1rem;
-      text-align: center;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .pagination button {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .pagination button.active,
+    .pagination button:hover {
+      background: rgba(255, 255, 255, 0.4);
     }
   </style>
 </head>
@@ -97,9 +117,14 @@
   <label for="recherche">Rechercher une recette :</label>
   <input type="text" id="recherche" placeholder="Ex : Tiramisu, Quiche..." oninput="filtrerRecettes()" />
 
+  <label for="tri">Trier par :</label>
+  <select id="tri" onchange="filtrerRecettes()">
+    <option value="az">Nom (A → Z)</option>
+    <option value="za">Nom (Z → A)</option>
+  </select>
+
   <section id="liste-recettes">
-    <h2>Plats principaux</h2>
-    <ul>
+    <ul id="recette-container">
       <li data-categorie="plat" data-nom="quiche lorraine">
         <a href="recettes/quiche-lorraine.html" class="recette">
           <img src="images/quiche-lorraine.jpg" alt="Quiche Lorraine">
@@ -116,25 +141,72 @@
           </div>
         </a>
       </li>
+      <!-- ➕ Ajoute d'autres recettes ici -->
     </ul>
   </section>
 
+  <div class="pagination" id="pagination"></div>
+
   <script>
+    const recettesParPage = 6;
+    let pageActuelle = 1;
+    let recettes = [];
+
     function filtrerRecettes() {
       const filtreCategorie = document.getElementById("filtre").value;
       const filtreTexte = document.getElementById("recherche").value.toLowerCase();
-      const recettes = document.querySelectorAll("li[data-categorie]");
+      const ordreTri = document.getElementById("tri").value;
 
-      recettes.forEach(recette => {
-        const categorie = recette.dataset.categorie;
-        const nom = recette.dataset.nom.toLowerCase();
+      const tousLi = Array.from(document.querySelectorAll("li[data-categorie]"));
 
-        const correspondCategorie = (filtreCategorie === "toutes" || categorie === filtreCategorie);
-        const correspondNom = nom.includes(filtreTexte);
-
-        recette.style.display = (correspondCategorie && correspondNom) ? "block" : "none";
+      recettes = tousLi.filter(li => {
+        const categorie = li.dataset.categorie;
+        const nom = li.dataset.nom.toLowerCase();
+        return (filtreCategorie === "toutes" || categorie === filtreCategorie) &&
+               nom.includes(filtreTexte);
       });
+
+      recettes.sort((a, b) => {
+        const nomA = a.dataset.nom.toLowerCase();
+        const nomB = b.dataset.nom.toLowerCase();
+        return ordreTri === "az" ? nomA.localeCompare(nomB) : nomB.localeCompare(nomA);
+      });
+
+      pageActuelle = 1;
+      afficherRecettes();
+      afficherPagination();
     }
+
+    function afficherRecettes() {
+      const container = document.getElementById("recette-container");
+      container.innerHTML = "";
+      const debut = (pageActuelle - 1) * recettesParPage;
+      const recettesAffichees = recettes.slice(debut, debut + recettesParPage);
+      recettesAffichees.forEach(recette => container.appendChild(recette));
+    }
+
+    function afficherPagination() {
+      const totalPages = Math.ceil(recettes.length / recettesParPage);
+      const paginationContainer = document.getElementById("pagination");
+      paginationContainer.innerHTML = "";
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement("button");
+        btn.textContent = i;
+        if (i === pageActuelle) btn.classList.add("active");
+        btn.onclick = () => {
+          pageActuelle = i;
+          afficherRecettes();
+          afficherPagination();
+        };
+        paginationContainer.appendChild(btn);
+      }
+    }
+
+    // Initialisation
+    window.onload = () => {
+      filtrerRecettes();
+    };
   </script>
 
 </body>
