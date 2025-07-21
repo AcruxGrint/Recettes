@@ -45,21 +45,24 @@
       border: none;
     }
 
-    ul {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+   ul {
+      display: flex;
+      flex-wrap: wrap;
       gap: 1.5rem;
       list-style: none;
       padding: 0;
       margin-bottom: 2rem;
+      justify-content: flex-start;
     }
-
+    
     li {
+      width: 200px; /* même largeur que l'image */
       background-color: rgba(255, 255, 255, 0.1);
       border-radius: 12px;
       overflow: hidden;
       transition: transform 0.3s ease;
     }
+
 
     li:hover {
       transform: translateY(-5px);
