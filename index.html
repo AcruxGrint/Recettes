@@ -17,10 +17,21 @@
       margin-bottom: 0.5rem;
     }
 
-    label, select {
-      font-size: 1rem;
-      margin: 1rem 0;
+    label {
       display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      margin-bottom: 1rem;
     }
 
     ul {
@@ -84,54 +95,43 @@
     <option value="dessert">Desserts</option>
   </select>
 
-  <section id="entrees">
-    <h2>Entrées</h2>
-    <ul>
-      <!-- Exemple d'entrée -->
-      <!--
-      <li data-categorie="entree">
-        <a href="recettes/..." class="recette">
-          <img src="images/..." alt="...">
-          <span>Nom de la recette</span>
-        </a>
-      </li>
-      -->
-    </ul>
-  </section>
+  <label for="recherche">Rechercher une recette :</label>
+  <input type="text" id="recherche" placeholder="Ex : Tiramisu, Quiche..." oninput="filtrerRecettes()" />
 
-  <section id="plats">
+  <section id="liste-recettes">
     <h2>Plats principaux</h2>
     <ul>
-      <li data-categorie="plat">
+      <li data-categorie="plat" data-nom="quiche lorraine">
         <a href="recettes/quiche-lorraine.html" class="recette">
           <img src="images/quiche-lorraine.jpg" alt="Quiche Lorraine">
           <span>Quiche Lorraine</span>
         </a>
       </li>
-      <li data-categorie="plat">
+      <li data-categorie="plat" data-nom="tiramisu salé courgette">
         <a href="recettes/tiramisu-salé-courgette.html" class="recette">
           <img src="images/tiramisu-salé-courgette.jpg" alt="Tiramisu salé courgette">
           <span>Tiramisu salé courgette</span>
         </a>
       </li>
     </ul>
-  </section>
 
-  <section id="desserts">
-    <h2>Desserts</h2>
-    <ul>
-      <!-- Exemple de dessert -->
-    </ul>
+    <!-- Tu peux ajouter d'autres sections (entrées, desserts) ici -->
   </section>
 
   <script>
     function filtrerRecettes() {
-      const filtre = document.getElementById("filtre").value;
+      const filtreCategorie = document.getElementById("filtre").value;
+      const filtreTexte = document.getElementById("recherche").value.toLowerCase();
       const recettes = document.querySelectorAll("li[data-categorie]");
 
       recettes.forEach(recette => {
         const categorie = recette.dataset.categorie;
-        recette.style.display = (filtre === "toutes" || filtre === categorie) ? "block" : "none";
+        const nom = recette.dataset.nom.toLowerCase();
+
+        const correspondCategorie = (filtreCategorie === "toutes" || categorie === filtreCategorie);
+        const correspondNom = nom.includes(filtreTexte);
+
+        recette.style.display = (correspondCategorie && correspondNom) ? "block" : "none";
       });
     }
   </script>
