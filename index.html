@@ -17,21 +17,32 @@
       margin-bottom: 0.5rem;
     }
 
-    label {
-      display: block;
-      margin-top: 1rem;
-      margin-bottom: 0.5rem;
-      font-weight: bold;
+    /* 🆕 Filtres en ligne */
+    .filtres {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
 
-    select, input[type="text"] {
+    .filtre-item {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .filtre-item label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .filtre-item select,
+    .filtre-item input {
       width: 100%;
-      max-width: 400px;
       padding: 0.5rem;
       font-size: 1rem;
       border-radius: 8px;
       border: none;
-      margin-bottom: 1rem;
     }
 
     ul {
@@ -106,23 +117,33 @@
 
   <h1>📚 Recettes</h1>
 
-  <label for="filtre">Filtrer par catégorie :</label>
-  <select id="filtre" onchange="filtrerRecettes()">
-    <option value="toutes">Toutes</option>
-    <option value="entree">Entrées</option>
-    <option value="plat">Plats principaux</option>
-    <option value="dessert">Desserts</option>
-  </select>
+  <!-- 🔍 Zone filtres (catégorie, recherche, tri) -->
+  <div class="filtres">
+    <div class="filtre-item">
+      <label for="filtre">Catégorie</label>
+      <select id="filtre" onchange="filtrerRecettes()">
+        <option value="toutes">Toutes</option>
+        <option value="entree">Entrées</option>
+        <option value="plat">Plats principaux</option>
+        <option value="dessert">Desserts</option>
+      </select>
+    </div>
 
-  <label for="recherche">Rechercher une recette :</label>
-  <input type="text" id="recherche" placeholder="Ex : Tiramisu, Quiche..." oninput="filtrerRecettes()" />
+    <div class="filtre-item">
+      <label for="recherche">Recherche</label>
+      <input type="text" id="recherche" placeholder="Ex : Tiramisu, Quiche..." oninput="filtrerRecettes()" />
+    </div>
 
-  <label for="tri">Trier par :</label>
-  <select id="tri" onchange="filtrerRecettes()">
-    <option value="az">Nom (A → Z)</option>
-    <option value="za">Nom (Z → A)</option>
-  </select>
+    <div class="filtre-item">
+      <label for="tri">Trier</label>
+      <select id="tri" onchange="filtrerRecettes()">
+        <option value="az">Nom (A → Z)</option>
+        <option value="za">Nom (Z → A)</option>
+      </select>
+    </div>
+  </div>
 
+  <!-- 📋 Liste des recettes -->
   <section id="liste-recettes">
     <ul id="recette-container">
       <li data-categorie="plat" data-nom="quiche lorraine">
@@ -145,8 +166,10 @@
     </ul>
   </section>
 
+  <!-- ⏩ Pagination -->
   <div class="pagination" id="pagination"></div>
 
+  <!-- ⚙️ Script JS pour filtre, recherche, tri -->
   <script>
     const recettesParPage = 20;
     let pageActuelle = 1;
