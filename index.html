@@ -173,67 +173,69 @@
   <div class="pagination" id="pagination"></div>
 
   <!-- ⚙️ Script JS pour filtre, recherche, tri -->
-  <script>
-    const recettesParPage = 20;
-    let pageActuelle = 1;
-    let recettes = [];
+<script>
+  const recettesParPage = 20;
+  let pageActuelle = 1;
+  let recettes = [];
+  let recettesOriginales = [];
 
-    function filtrerRecettes() {
-      const filtreCategorie = document.getElementById("filtre").value;
-      const filtreTexte = document.getElementById("recherche").value.toLowerCase();
-      const ordreTri = document.getElementById("tri").value;
+  function filtrerRecettes() {
+    const filtreCategorie = document.getElementById("filtre").value;
+    const filtreTexte = document.getElementById("recherche").value.toLowerCase();
+    const ordreTri = document.getElementById("tri").value;
 
-      const tousLi = Array.from(document.querySelectorAll("li[data-categorie]"));
+    // Repartir depuis la liste complète des recettes initiales
+    recettes = recettesOriginales.map(li => li.cloneNode(true)).filter(li => {
+      const categorie = li.dataset.categorie;
+      const nom = li.dataset.nom.toLowerCase();
+      return (filtreCategorie === "toutes" || categorie === filtreCategorie) &&
+             nom.includes(filtreTexte);
+    });
 
-      recettes = tousLi.filter(li => {
-        const categorie = li.dataset.categorie;
-        const nom = li.dataset.nom.toLowerCase();
-        return (filtreCategorie === "toutes" || categorie === filtreCategorie) &&
-               nom.includes(filtreTexte);
-      });
+    recettes.sort((a, b) => {
+      const nomA = a.dataset.nom.toLowerCase();
+      const nomB = b.dataset.nom.toLowerCase();
+      return ordreTri === "az" ? nomA.localeCompare(nomB) : nomB.localeCompare(nomA);
+    });
 
-      recettes.sort((a, b) => {
-        const nomA = a.dataset.nom.toLowerCase();
-        const nomB = b.dataset.nom.toLowerCase();
-        return ordreTri === "az" ? nomA.localeCompare(nomB) : nomB.localeCompare(nomA);
-      });
+    pageActuelle = 1;
+    afficherRecettes();
+    afficherPagination();
+  }
 
-      pageActuelle = 1;
-      afficherRecettes();
-      afficherPagination();
+  function afficherRecettes() {
+    const container = document.getElementById("recette-container");
+    container.innerHTML = "";
+    const debut = (pageActuelle - 1) * recettesParPage;
+    const recettesAffichees = recettes.slice(debut, debut + recettesParPage);
+    recettesAffichees.forEach(recette => container.appendChild(recette));
+  }
+
+  function afficherPagination() {
+    const totalPages = Math.ceil(recettes.length / recettesParPage);
+    const paginationContainer = document.getElementById("pagination");
+    paginationContainer.innerHTML = "";
+
+    for (let i = 1; i <= totalPages; i++) {
+      const btn = document.createElement("button");
+      btn.textContent = i;
+      if (i === pageActuelle) btn.classList.add("active");
+      btn.onclick = () => {
+        pageActuelle = i;
+        afficherRecettes();
+        afficherPagination();
+      };
+      paginationContainer.appendChild(btn);
     }
+  }
 
-    function afficherRecettes() {
-      const container = document.getElementById("recette-container");
-      container.innerHTML = "";
-      const debut = (pageActuelle - 1) * recettesParPage;
-      const recettesAffichees = recettes.slice(debut, debut + recettesParPage);
-      recettesAffichees.forEach(recette => container.appendChild(recette));
-    }
-
-    function afficherPagination() {
-      const totalPages = Math.ceil(recettes.length / recettesParPage);
-      const paginationContainer = document.getElementById("pagination");
-      paginationContainer.innerHTML = "";
-
-      for (let i = 1; i <= totalPages; i++) {
-        const btn = document.createElement("button");
-        btn.textContent = i;
-        if (i === pageActuelle) btn.classList.add("active");
-        btn.onclick = () => {
-          pageActuelle = i;
-          afficherRecettes();
-          afficherPagination();
-        };
-        paginationContainer.appendChild(btn);
-      }
-    }
-
-    // Initialisation
-    window.onload = () => {
-      filtrerRecettes();
-    };
-  </script>
+  // Initialisation au chargement de la page
+  window.onload = () => {
+    const tousLi = Array.from(document.querySelectorAll("li[data-categorie]"));
+    recettesOriginales = tousLi.map(li => li.cloneNode(true));
+    filtrerRecettes();
+  };
+</script>
 
 </body>
 </html>
