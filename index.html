@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Recettes</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       background-color: #1d687a;
@@ -17,32 +17,38 @@
       margin-bottom: 0.5rem;
     }
 
+    label, select {
+      font-size: 1rem;
+      margin: 1rem 0;
+      display: block;
+    }
+
     ul {
       list-style: none;
       padding: 0;
-      margin: 0 0 2rem 0;
+      margin-bottom: 2rem;
     }
 
     li {
       margin-bottom: 1rem;
     }
 
-    a {
-      color: white;
-      text-decoration: none;
+    .recette {
       display: flex;
       align-items: center;
       background-color: rgba(255, 255, 255, 0.1);
       padding: 0.7rem;
       border-radius: 10px;
+      text-decoration: none;
+      color: white;
       transition: background 0.3s;
     }
 
-    a:hover {
+    .recette:hover {
       background-color: rgba(255, 255, 255, 0.2);
     }
 
-    img {
+    .recette img {
       height: 60px;
       width: 60px;
       object-fit: cover;
@@ -52,12 +58,12 @@
     }
 
     @media (max-width: 600px) {
-      a {
+      .recette {
         flex-direction: column;
         align-items: flex-start;
       }
 
-      img {
+      .recette img {
         margin: 0 0 0.5rem 0;
         width: 100%;
         height: auto;
@@ -67,52 +73,68 @@
   </style>
 </head>
 <body>
+
   <h1>📚 Recettes</h1>
 
   <label for="filtre">Filtrer par catégorie :</label>
-<select id="filtre" onchange="filtrerRecettes()">
-  <option value="toutes">Toutes</option>
-  <option value="entree">Entrées</option>
-  <option value="plat">Plats principaux</option>
-  <option value="dessert">Desserts</option>
-</select>
-  
-  <h2>Entrées</h2>
-  <ul>
-    <!-- Exemple d'entrée à ajouter ici -->
-  </ul>
+  <select id="filtre" onchange="filtrerRecettes()">
+    <option value="toutes">Toutes</option>
+    <option value="entree">Entrées</option>
+    <option value="plat">Plats principaux</option>
+    <option value="dessert">Desserts</option>
+  </select>
 
-  <h2>Plats principaux</h2>
-  <ul>
-    <li data-categorie="plat">
-      <a href="recettes/quiche-lorraine.html">
-        <img src="images/quiche-lorraine.jpg" alt="Quiche Lorraine">
-        <span>Quiche Lorraine</span>
-      </a>
-      <a href="recettes/tiramisu-salé-courgette.html">
-        <img src="images/tiramisu-salé-courgette.jpg" alt="Tiramisu salé courgette">
-        <span>Tiramisu salé courgette</span>
-      </a>
-    </li>
-  </ul>
+  <section id="entrees">
+    <h2>Entrées</h2>
+    <ul>
+      <!-- Exemple d'entrée -->
+      <!--
+      <li data-categorie="entree">
+        <a href="recettes/..." class="recette">
+          <img src="images/..." alt="...">
+          <span>Nom de la recette</span>
+        </a>
+      </li>
+      -->
+    </ul>
+  </section>
 
-  <h2>Desserts</h2>
-  <ul>
-    <!-- Exemple de dessert à ajouter ici -->
-  </ul>
+  <section id="plats">
+    <h2>Plats principaux</h2>
+    <ul>
+      <li data-categorie="plat">
+        <a href="recettes/quiche-lorraine.html" class="recette">
+          <img src="images/quiche-lorraine.jpg" alt="Quiche Lorraine">
+          <span>Quiche Lorraine</span>
+        </a>
+      </li>
+      <li data-categorie="plat">
+        <a href="recettes/tiramisu-salé-courgette.html" class="recette">
+          <img src="images/tiramisu-salé-courgette.jpg" alt="Tiramisu salé courgette">
+          <span>Tiramisu salé courgette</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <section id="desserts">
+    <h2>Desserts</h2>
+    <ul>
+      <!-- Exemple de dessert -->
+    </ul>
+  </section>
+
   <script>
-  function filtrerRecettes() {
-    const filtre = document.getElementById("filtre").value;
-    const recettes = document.querySelectorAll("li[data-categorie]");
-    recettes.forEach((recette) => {
-      if (filtre === "toutes" || recette.dataset.categorie === filtre) {
-        recette.style.display = "block";
-      } else {
-        recette.style.display = "none";
-      }
-    });
-  }
-</script>
+    function filtrerRecettes() {
+      const filtre = document.getElementById("filtre").value;
+      const recettes = document.querySelectorAll("li[data-categorie]");
+
+      recettes.forEach(recette => {
+        const categorie = recette.dataset.categorie;
+        recette.style.display = (filtre === "toutes" || filtre === categorie) ? "block" : "none";
+      });
+    }
+  </script>
 
 </body>
 </html>
