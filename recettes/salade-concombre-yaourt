@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🥒 Salade de concombre au yaourt</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: #fefaf5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #7885de;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .meta, .categorie {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      color: #3b4ecc;
+      border-bottom: 2px solid #3b4ecc;
+      padding-bottom: 0.3rem;
+      margin-top: 2rem;
+    }
+
+    ul, ol {
+      margin-left: 1.5rem;
+    }
+
+    .btn-retour {
+      display: inline-block;
+      margin-top: 2rem;
+      background: #3b4ecc;
+      color: white;
+      text-decoration: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn-retour:hover {
+      background: #2a3ba8;
+    }
+
+    .source {
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>🥒 Salade de concombre au yaourt</h1>
+    <p class="meta">Durée : 25 min (Préparation : 10 min · Repos : 15 min) · Portions : 4</p>
+    <p class="categorie">Catégorie : Plats principaux</p>
+  </header>
+
+  <main role="main">
+    <h2>Ingrédients</h2>
+    <ul>
+      <li>2 Concombres</li>
+      <li>300g Yaourt grec</li>
+      <li>1 Gousse d'ail</li>
+      <li>5 brins Aneth</li>
+      <li>Jus de citron</li>
+      <li>1 c. à soupe Vinaigre</li>
+      <li>3 c. à soupe Huile d'olive</li>
+      <li>Gros sel et poivre</li>
+    </ul>
+
+    <h2>Préparation</h2>
+    <ol>
+      <li>Épluchez les concombres, ôtez les graines et coupez-les en fines rondelles bien régulières.</li>
+      <li>Disposez-les dans un plat (un plat à gratin est parfait pour pouvoir bien étaler toutes les rondelles de concombre), saupoudrez-les de gros sel et remuez délicatement.</li>
+      <li>Laissez les concombres dégorger pendant 15 min environ, puis passez-les sous l'eau claire pour éliminer le sel. Enfin, épongez-les bien à l'aide d'un linge propre ou de papier absorbant.</li>
+      <li>Préparer la sauce : Versez le yaourt dans un saladier, ajoutez la gousse d'ail écrasée, puis ajoutez ensuite l'huile d'olive, le jus de citron et le vinaigre. Salez, poivrez et mélangez.</li>
+      <li>Incorporez les rondelles de concombre et l'aneth délicatement ciselée à la préparation. Mélangez à nouveau le tout de façon à ce que la sauce enveloppe bien le concombre.</li>
+    </ol>
+
+    <h2>Source</h2>
+    <p class="source">
+      <a href="https://www.cuisineaz.com/recettes/salade-de-concombre-au-yaourt-29226.aspx" target="_blank" rel="noopener noreferrer">
+      </a>
+    </p>
+
+    <a href="/Recettes/" class="btn-retour">⬅ Retour à l’accueil</a>
+  </main>
+
+</body>
+</html>
