@@ -145,6 +145,21 @@
       </select>
     </div>
   </div>
+  <div style="margin-bottom: 1.5rem;">
+  <button onclick="choisirRecetteAleatoire()" style="
+    padding: 0.6rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background: #ffcc00;
+    color: #1d687a;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+  ">
+    🎲 Recette aléatoire
+  </button>
+</div>
+
 
   <!-- 📋 Liste des recettes -->
   <section id="liste-recettes">
@@ -251,6 +266,17 @@
     recettesOriginales = tousLi.map(li => li.cloneNode(true));
     filtrerRecettes();
   };
+  function choisirRecetteAleatoire() {
+  if (recettes.length === 0) return;
+
+  const aleatoire = recettes[Math.floor(Math.random() * recettes.length)];
+  const lien = aleatoire.querySelector("a");
+
+  if (lien) {
+    window.location.href = lien.href;
+  }
+}
+
 </script>
 
 </body>
