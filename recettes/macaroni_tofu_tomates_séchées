@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🥧 Crumble kiwi banane</title>
+  <title>Macaroni rofu et tomates séchées</title>
   <style>
     body {
       margin: 0;
@@ -76,7 +76,7 @@
 <body>
 
   <header>
-    <h1>🥧 Crumble kiwi banane</h1>
+    <h1>Macaroni rofu et tomates séchées</h1>
     <p class="meta">Durée : 55min (Préparation : 15 min · Cuisson : 40 min) · Portions : 5</p>
     <p class="categorie">Catégorie : Desserts</p>
   </header>
